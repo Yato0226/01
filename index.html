@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Novel Game</title>
+    <title>Responsive Visual Novel Game</title>
     <style>
         body {
             margin: 0;
@@ -13,26 +13,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
         #game-container {
             width: 100%;
             max-width: 800px;
-            height: auto;
             padding: 10px;
             background: #88aaff;
             border: 3px solid #000;
-            position: relative;
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
         .npc {
-            display: inline-block;
-            width: 120px;
-            height: 180px;
-            margin: 10px;
-            background-size: cover;
+            flex: 1 1 calc(50% - 20px); /* Make NPCs take half the container width on larger screens */
+            max-width: 200px; /* Set a max width to prevent them from being too large */
+            height: auto;
+            aspect-ratio: 2 / 3; /* Ensure the NPCs maintain their aspect ratio */
             cursor: pointer;
             border: 2px solid #000;
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
         }
@@ -66,6 +67,13 @@
         }
         #close-button:hover {
             background: #009944;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .npc {
+                flex: 1 1 calc(100% - 20px); /* NPCs take full width on small screens */
+            }
         }
     </style>
 </head>
